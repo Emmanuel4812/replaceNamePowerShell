@@ -1,0 +1,18 @@
+$wildcard = '*RGBA_denoise*'
+$folder = "labialCuerpo"
+
+$files = get-ChildItem -Name $wildcard
+$cwd = Get-Location
+$folder_path = Join-Path -Path $cwd -ChildPath $folder
+
+mkdir $folder_path
+
+foreach($file in $files){
+    $_path = Join-Path -Path $cwd -ChildPath $file
+    $_new_path = Join-Path -Path $folder_path -ChildPath $file
+    
+    Move-Item $_path $folder_path
+}
+
+
+#Get-ChildItem | Rename-Item -NewName {$_.name -replace "_RGBA_denoise.exr", ".exr"}
